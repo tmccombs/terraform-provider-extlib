@@ -16,3 +16,12 @@ output "boolnum" {
     t = provider::ext::boolnum(true)
   }
 }
+
+output "boolset" {
+  value = {
+    // 0
+    f = provider::ext::boolset(false)
+    // 1
+    t = provider::ext::boolset(true)
+  }
+}

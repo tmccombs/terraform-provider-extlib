@@ -56,5 +56,6 @@ func (p *ExtLibProvider) DataSources(ctx context.Context) []func() datasource.Da
 func (p *ExtLibProvider) Functions(ctx context.Context) []func() function.Function {
 	return []func() function.Function{
 		NewBoolnumFunction,
+		NewBoolsetFunction,
 	}
 }
