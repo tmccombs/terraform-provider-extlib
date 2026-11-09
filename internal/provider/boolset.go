@@ -45,7 +45,7 @@ This is useful for conditionally creating 0 or one instances of a dynamic block.
 func (f BoolsetFunction) Run(ctx context.Context, req function.RunRequest, resp *function.RunResponse) {
 	var v bool
 
-	resp.Error = function.ConcatFuncErrors(req.Arguments.Get(ctx, &v))
+	resp.Error = function.ConcatFuncErrors(resp.Error, req.Arguments.Get(ctx, &v))
 
 	if resp.Error != nil {
 		return
@@ -59,7 +59,7 @@ func (f BoolsetFunction) Run(ctx context.Context, req function.RunRequest, resp 
 		result = []string{}
 	}
 
-	resp.Error = function.ConcatFuncErrors(resp.Result.Set(ctx, result))
+	resp.Error = function.ConcatFuncErrors(resp.Error, resp.Result.Set(ctx, result))
 }
 
 func NewBoolsetFunction() function.Function {

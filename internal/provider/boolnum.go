@@ -9,10 +9,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/function"
 )
 
-var (
-	_ function.Function = BoolnumFunction{}
-)
-
 type BoolnumFunction struct{}
 
 func (f BoolnumFunction) Metadata(_ context.Context, _ function.MetadataRequest, resp *function.MetadataResponse) {
@@ -38,7 +34,7 @@ func (f BoolnumFunction) Definition(_ context.Context, _ function.DefinitionRequ
 func (f BoolnumFunction) Run(ctx context.Context, req function.RunRequest, resp *function.RunResponse) {
 	var v bool
 
-	resp.Error = function.ConcatFuncErrors(req.Arguments.Get(ctx, &v))
+	resp.Error = function.ConcatFuncErrors(resp.Error, req.Arguments.Get(ctx, &v))
 
 	if resp.Error != nil {
 		return
@@ -49,7 +45,7 @@ func (f BoolnumFunction) Run(ctx context.Context, req function.RunRequest, resp 
 		result = 1
 	}
 
-	resp.Error = function.ConcatFuncErrors(resp.Result.Set(ctx, result))
+	resp.Error = function.ConcatFuncErrors(resp.Error, resp.Result.Set(ctx, result))
 }
 
 func NewBoolnumFunction() function.Function {

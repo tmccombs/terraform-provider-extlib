@@ -50,8 +50,9 @@ terraform {
 
 Then you can use the following functions:
 
-- `provider::extlib::boolnum()`
-- `provider::extlib::boolset()`
+- `provider::extlib::boolnum(b)`
+- `provider::extlib::boolset(b)`
+- `provider::extlib::repeat(v,s)`
 
 ## Developing the Provider
 
@@ -62,9 +63,3 @@ To compile the provider, run `go install`. This will build the provider and put 
 To generate or update documentation, run `make generate`.
 
 In order to run the full suite of Acceptance tests, run `make testacc`.
-
-*Note:* Acceptance tests create real resources, and often cost money to run.
-
-```shell
-make testacc
-```

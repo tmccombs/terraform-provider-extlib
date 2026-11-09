@@ -57,5 +57,6 @@ func (p *ExtLibProvider) Functions(ctx context.Context) []func() function.Functi
 	return []func() function.Function{
 		NewBoolnumFunction,
 		NewBoolsetFunction,
+		NewRepeatFunction,
 	}
 }
