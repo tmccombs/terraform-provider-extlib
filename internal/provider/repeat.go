@@ -94,7 +94,7 @@ func NewRepeatFunction() function.Function {
 	return &RepeatFunction{}
 }
 
-func (_ nonNegativeIntValidator) ValidateParameterInt32(ctx context.Context, req function.Int32ParameterValidatorRequest, resp *function.Int32ParameterValidatorResponse) {
+func (nonNegativeIntValidator) ValidateParameterInt32(ctx context.Context, req function.Int32ParameterValidatorRequest, resp *function.Int32ParameterValidatorResponse) {
 	v := req.Value.ValueInt32()
 	if v < 0 {
 		resp.Error = function.ConcatFuncErrors(resp.Error, function.NewArgumentFuncError(req.ArgumentPosition, "must be non-negative"))

@@ -60,7 +60,10 @@ func TestRepeatFunction_Unknown(t *testing.T) {
 		t.Errorf("Unexpected error: %v", resp.Error)
 	}
 
-	v := resp.Result.Value().(types.Dynamic)
+	v, ok := resp.Result.Value().(types.Dynamic)
+	if !ok {
+		t.Fatalf("%v is not a Dynamic value", resp.Result.Value())
+	}
 
 	if tuple, ok := v.UnderlyingValue().(types.Tuple); ok {
 		elements := tuple.Elements()
@@ -92,7 +95,10 @@ func TestRepeatFunction_DynamicNull(t *testing.T) {
 		t.Errorf("Unexpected error: %v", resp.Error)
 	}
 
-	v := resp.Result.Value().(types.Dynamic)
+	v, ok := resp.Result.Value().(types.Dynamic)
+	if !ok {
+		t.Fatalf("%v is not a Dynamic value", resp.Result.Value())
+	}
 
 	if tuple, ok := v.UnderlyingValue().(types.Tuple); ok {
 		elements := tuple.Elements()
